@@ -27,7 +27,7 @@ public static class CommandHelper
 
         return name;
     }
-
+    
     public static SocketGuildUser? GetUser(
         SocketCommandContext context,
         string? name)
