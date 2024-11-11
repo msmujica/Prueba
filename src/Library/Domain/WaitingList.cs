@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Library;
 
 namespace Ucu.Poo.DiscordBot.Domain;
 
@@ -7,14 +10,14 @@ namespace Ucu.Poo.DiscordBot.Domain;
 /// </summary>
 public class WaitingList
 {
-    private readonly List<Trainer> trainers = new List<Trainer>();
+    private readonly List<Entrenador> trainers = new List<Entrenador>();
 
     public int Count
     {
         get { return this.trainers.Count; }
     }
 
-    public ReadOnlyCollection<Trainer> GetAllWaiting()
+    public ReadOnlyCollection<Entrenador> GetAllWaiting()
     {
         return this.trainers.AsReadOnly();
     }
@@ -35,7 +38,7 @@ public class WaitingList
         }
         
         if (this.FindTrainerByDisplayName(displayName) != null) return false;
-        trainers.Add(new Trainer(displayName));
+        trainers.Add(new Entrenador(displayName));
         return true;
 
     }
@@ -50,7 +53,7 @@ public class WaitingList
     /// contrario.</returns>
     public bool RemoveTrainer(string displayName)
     {
-        Trainer? trainer = this.FindTrainerByDisplayName(displayName);
+        Entrenador? trainer = this.FindTrainerByDisplayName(displayName);
         if (trainer == null) return false;
         trainers.Remove(trainer);
         return true;
@@ -66,11 +69,11 @@ public class WaitingList
     /// </param>
     /// <returns>El jugador encontrado o <c>null</c> en caso contrario.
     /// </returns>
-    public Trainer? FindTrainerByDisplayName(string displayName)
+    public Entrenador? FindTrainerByDisplayName(string displayName)
     {
-        foreach (Trainer trainer in this.trainers)
+        foreach (Entrenador trainer in this.trainers)
         {
-            if (trainer.DisplayName == displayName)
+            if (trainer.Nombre == displayName)
             {
                 return trainer;
             }
@@ -86,7 +89,7 @@ public class WaitingList
     /// 
     /// </summary>
     /// <returns></returns>
-    public Trainer? GetAnyoneWaiting()
+    public Entrenador? GetAnyoneWaiting()
     {
         if (this.trainers.Count == 0)
         {
