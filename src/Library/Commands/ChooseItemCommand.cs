@@ -16,7 +16,7 @@ public class ChooseItemCommand : ModuleBase<SocketCommandContext>
     /// Implementa el comando 'item'. Este commando selecciona
     /// un item y un pokemon, luego lo usa.
     /// </summary>
-    [Command("battle")]
+    [Command("item")]
     [Summary(
         """
         Ordena al pokemon activo de el Entrenador a atacar; si el 

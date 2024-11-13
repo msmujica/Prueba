@@ -16,7 +16,7 @@ public class ChangePokemonCommand : ModuleBase<SocketCommandContext>
     /// Implementa el comando 'change'. Este comando une al jugador que envía el
     /// id del pokemon para cambiarlo.
     /// </summary>
-    [Command("choose")]
+    [Command("change")]
     [Summary(
         """
         Un jugador que elije un id de pokemon para cambiar su activo;
