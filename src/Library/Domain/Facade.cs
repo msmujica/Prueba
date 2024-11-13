@@ -247,8 +247,7 @@ public class Facade
     public string ChooseTeam(string playerDisplayName, int number)
     {
         Entrenador? player = this.BattlesList.FindTrainerByDisplayName(playerDisplayName);
-        player.elegirEquipo(number);
-        return $"El pokemon {Pokedex.MostrarPokemonPorIndice(number)}";
+        return player.elegirEquipo(number);
     }
 
     /// <summary>
