@@ -32,8 +32,12 @@ public class ChoosePokemonCommand : ModuleBase<SocketCommandContext>
         if (pokemonInt != null)
         {
             string result = Facade.Instance.ChooseTeam(displayName, pokemonInt);
-            await Context.Message.Author.SendMessageAsync(result);
+            //await Context.Message.Author.SendMessageAsync(result);
+            await ReplyAsync(result);
         }
-        await Context.Message.Author.SendMessageAsync("Favor de proporcionar un ID valido.");
+        else
+        {
+            await Context.Message.Author.SendMessageAsync("Favor de proporcionar un ID valido.");
+        }
     }
 }

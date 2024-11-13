@@ -26,13 +26,13 @@ public class ChooseItemCommand : ModuleBase<SocketCommandContext>
     public async Task ExecuteAsync(
         [Remainder]
         [Summary("Opcion de ataque")]
-        string? itemOption, int pokemonOption)
+        int pokemonOption)
     {
         string displayName = CommandHelper.GetDisplayName(Context);
-        
+        string itemOption = null;
 
         string result;
-        if (itemOption != null && pokemonOption >= 0 && pokemonOption <= 5)
+        if (itemOption == null && pokemonOption >= 0 && pokemonOption <= 5)
         {
             result = Facade.Instance.UseItem(displayName, pokemonOption, itemOption);
             await Context.Message.Author.SendMessageAsync(result);

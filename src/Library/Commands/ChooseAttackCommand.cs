@@ -17,7 +17,7 @@ public class ChooseAttackCommand : ModuleBase<SocketCommandContext>
     /// Implementa el comando 'attack'. Este commando selecciona
     /// un ataque y ordena atacar.
     /// </summary>
-    [Command("battle")]
+    [Command("attack")]
     [Summary(
         """
         Ordena al pokemon activo de el Entrenador a atacar; si el 
