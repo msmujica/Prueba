@@ -36,7 +36,6 @@ public class ChooseAttackCommand : ModuleBase<SocketCommandContext>
         if (attackOption != null)
         {
             result = Facade.Instance.AttackPokemon(displayName, attackOption);
-            await Context.Message.Author.SendMessageAsync(result);
         }
         else
         {

@@ -32,8 +32,8 @@ public class ChangePokemonCommand : ModuleBase<SocketCommandContext>
         if (pokemonInt != null)
         {
             string result = Facade.Instance.ChangePokemon(displayName, pokemonInt);
-            await Context.Message.Author.SendMessageAsync(result);
+            ReplyAsync(result);
         }
-        await Context.Message.Author.SendMessageAsync("Favor de proporcionar un ID valido.");
+        ReplyAsync("Favor de proporcionar un ID valido.");
     }
 }
