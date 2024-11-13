@@ -1,3 +1,4 @@
+using System.Collections;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
@@ -26,15 +27,15 @@ public class ChooseItemCommand : ModuleBase<SocketCommandContext>
     public async Task ExecuteAsync(
         [Remainder]
         [Summary("Opcion de ataque")]
-        int pokemonOption)
+        string? optionList = null)
     {
         string displayName = CommandHelper.GetDisplayName(Context);
-        string itemOption = null;
+        string[] options = optionList.Split(",");
 
         string result;
-        if (itemOption == null && pokemonOption >= 0 && pokemonOption <= 5)
+        if (options == null)
         {
-            result = Facade.Instance.UseItem(displayName, pokemonOption, itemOption);
+            result = Facade.Instance.UseItem(displayName, Int32.Parse(options[1]), options[0]);
             await Context.Message.Author.SendMessageAsync(result);
         }
         else
