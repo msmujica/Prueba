@@ -36,7 +36,6 @@ public class ChooseItemCommand : ModuleBase<SocketCommandContext>
         if (options == null)
         {
             result = Facade.Instance.UseItem(displayName, Int32.Parse(options[1]), options[0]);
-            await Context.Message.Author.SendMessageAsync(result);
         }
         else
         {
