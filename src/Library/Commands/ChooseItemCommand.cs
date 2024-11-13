@@ -6,18 +6,17 @@ using Ucu.Poo.DiscordBot.Domain;
 namespace Ucu.Poo.DiscordBot.Commands;
 
 /// <summary>
-/// Esta clase implementa el comando 'attack' del bot. Este comando ordena
-/// a un pokemon a atacar segun el ataque, el ataque se selecciona segun el
-/// parametro que nos pasa el usuario
+/// Esta clase implementa el comando 'item' del bot. Este comando usa uno
+/// de los items disponible del entrenador.
 /// </summary>
 // ReSharper disable once UnusedType.Global
-public class ChooseAttackCommand : ModuleBase<SocketCommandContext>
+public class ChooseItemCommand : ModuleBase<SocketCommandContext>
 {
     /// <summary>
-    /// Implementa el comando 'attack'. Este commando selecciona
-    /// un ataque y ordena atacar.
+    /// Implementa el comando 'item'. Este commando selecciona
+    /// un item y un pokemon, luego lo usa.
     /// </summary>
-    [Command("attack")]
+    [Command("battle")]
     [Summary(
         """
         Ordena al pokemon activo de el Entrenador a atacar; si el 
@@ -27,20 +26,20 @@ public class ChooseAttackCommand : ModuleBase<SocketCommandContext>
     public async Task ExecuteAsync(
         [Remainder]
         [Summary("Opcion de ataque")]
-        string? attackOption = null)
+        int pokemonOption)
     {
         string displayName = CommandHelper.GetDisplayName(Context);
-        
+        string itemOption = null;
 
         string result;
-        if (attackOption != null)
+        if (itemOption == null && pokemonOption >= 0 && pokemonOption <= 5)
         {
-            result = Facade.Instance.AttackPokemon(displayName, attackOption);
+            result = Facade.Instance.UseItem(displayName, pokemonOption, itemOption);
             await Context.Message.Author.SendMessageAsync(result);
         }
         else
         {
-            result = $"Favor de ingresar un ataque valido.";
+            result = $"Favor de ingresar un pokemon u item valido.";
         }
 
         await ReplyAsync(result);
