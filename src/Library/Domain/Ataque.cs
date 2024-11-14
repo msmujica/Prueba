@@ -130,7 +130,7 @@ namespace Library
             var attack = ObtainAttack(nameAttack);
             if (attack.Damage == 0)
                 return 0; // Si el ataque no existe, no calculamos el daño.
-        public static (int Daño, string Descripcion) CalcularDaño(string nombreAtaque, Pokemon objetivo, GestorEfectos gestorEfectos)
+        static (int Daño, string Descripcion) CalcularDaño(string nombreAtaque, Pokemon objetivo, GestorEfectos gestorEfectos)
         {
             string descripcion = "";
             var ataque = ObtenerAtaque(nombreAtaque);
