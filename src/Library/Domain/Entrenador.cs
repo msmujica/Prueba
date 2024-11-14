@@ -69,7 +69,7 @@ public class Entrenador
         }
         Pokedex.CrearPokemonPorIndice(numero, this);
         nombre = Pokedex.MostrarPokemonPorIndice(numero);
-        return $"El pokemon {nombre} se agrego a la lista, quedan {Equipo.Count - 6} espacios.";
+        return $"El pokemon {nombre} se agrego a la lista, quedan {6 - Equipo.Count} espacios.";
     }
 
     /// <summary>
