@@ -122,7 +122,7 @@ namespace Library
         public static (int Daño, string Descripcion) CalculeDamage(string nameAttack, Pokemon objetive,
             GestorEfectos effectsManager)
         {
-            string descripcion = "";
+            string description = "";
             var attack = ObtainAttack(nameAttack);
             if (attack.Damage == 0)
                 return (0, "Ataque no encontrado"); // Si el ataque no existe, retorna 0 y mensaje
@@ -132,34 +132,34 @@ namespace Library
             // Verifica si el ataque es preciso
             if (ItsPrecise())
             {
-                descripcion += "El ataque es preciso. ";
+                description += "El ataque es preciso. ";
                 if (Critical())
                 {
 
                     totaldmg = (int)(totaldmg * 1.2); // Aumenta el daño en un 20% si es crítico
-                    descripcion += "¡Es un golpe crítico! ";
+                    description += "¡Es un golpe crítico! ";
                 }
 
                 // Calcula el multiplicador de daño según los tipos
                 double multiplier = LogicaTipos.CalcularMultiplicador(attack.Type, objetive.Tipos);
                 totaldmg = (int)(totaldmg * multiplier);
-                descripcion += $"Como el ataque es tipo {attack.Type} el daño es {totaldmg}. ";
+                description += $"Como el ataque es tipo {attack.Type} el daño es {totaldmg}. ";
 
                 if (effectsManager.PokemonConEfecto(objetive) && ApplySpecialEffect())
                 {
                     // Aplica un efecto especial
                     IEfecto efectoEspecial = SelectSpecialEffect();
                     effectsManager.AplicarEfecto(efectoEspecial, objetive);
-                    descripcion += $"Se aplica el efecto especial: {efectoEspecial}. ";
+                    description += $"Se aplica el efecto especial: {efectoEspecial}. ";
                 }
             }
             else
             {
                 totaldmg = 0; // Si no es preciso, no causa daño
-                descripcion = "El ataque falló.";
+                description = "El ataque falló.";
             }
 
-            return (totaldmg, descripcion);
+            return (totaldmg, description);
         }
 
         /// <summary>

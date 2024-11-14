@@ -228,7 +228,7 @@ public class Facade
         List<Pokemon> pokemones = player.Equipo;
         foreach (var VARIABLE in pokemones)
         {
-            value += "\n" + VARIABLE.Nombre + "Vida: " + VARIABLE.Vida + "/100";
+            value += "\n" + VARIABLE.Name + "Vida: " + VARIABLE.Vida + "/100";
         }
 
         return value;

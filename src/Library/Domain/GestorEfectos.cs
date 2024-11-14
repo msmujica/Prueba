@@ -59,7 +59,7 @@ namespace Library
             // Verifica si el Pokémon tiene efectos activos
             if (!efectosActivos.ContainsKey(pokem))
             {
-                Console.WriteLine($"{pokem.Nombre} no tiene efectos activos.");
+                Console.WriteLine($"{pokem.Name} no tiene efectos activos.");
                 return false;
             }
 
@@ -110,11 +110,11 @@ namespace Library
             if (efectosActivos.ContainsKey(pokemon))
             {
                 efectosActivos.Remove(pokemon);
-                Console.WriteLine($"Todos los efectos han sido eliminados de {pokemon.Nombre}.");
+                Console.WriteLine($"Todos los efectos han sido eliminados de {pokemon.Name}.");
             }
             else
             {
-                Console.WriteLine($"{pokemon.Nombre} no tiene efectos activos.");
+                Console.WriteLine($"{pokemon.Name} no tiene efectos activos.");
             }
         }
 

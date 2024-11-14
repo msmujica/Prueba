@@ -13,7 +13,7 @@ namespace Library
         /// <param name="pokemon">El Pokémon que será paralizado.</param>
         public void IniciarEfecto(Pokemon pokemon)
         {
-            Console.WriteLine($"{pokemon.Nombre} ha sido paralizado.");
+            Console.WriteLine($"{pokemon.Name} ha sido paralizado.");
         }
 
         /// <summary>
@@ -30,12 +30,12 @@ namespace Library
             if (PuedeAtacar())
             {
                 // El Pokémon puede atacar este turno.
-                Console.WriteLine($"{pokemon.Nombre} supera la parálisis en este turno.");
+                Console.WriteLine($"{pokemon.Name} supera la parálisis en este turno.");
                 return false; // El efecto continúa, ya que el Pokémon puede atacar.
             }
 
             // El Pokémon no puede atacar este turno debido a la parálisis.
-            Console.WriteLine($"{pokemon.Nombre} está paralizado y no puede atacar este turno.");
+            Console.WriteLine($"{pokemon.Name} está paralizado y no puede atacar este turno.");
             return true; // El efecto sigue activo, ya que el Pokémon no puede atacar.
         }
 

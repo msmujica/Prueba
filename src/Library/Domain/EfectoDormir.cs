@@ -18,7 +18,7 @@ namespace Library
         {
             // Determina cuántos turnos el Pokémon estará dormido, un valor aleatorio entre 1 y 4
             turnosDormidos = new Random().Next(1, 5);
-            Console.WriteLine($"{pokemon.Nombre} ha sido dormido por {turnosDormidos} turnos.");
+            Console.WriteLine($"{pokemon.Name} ha sido dormido por {turnosDormidos} turnos.");
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Library
                 // Si ya no quedan turnos, el Pokémon se despierta
                 if (turnosDormidos == 0)
                 {
-                    Console.WriteLine($"{pokemon.Nombre} ha despertado.");
+                    Console.WriteLine($"{pokemon.Name} ha despertado.");
                     return false; // El efecto ha terminado
                 }
 
