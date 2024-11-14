@@ -161,7 +161,6 @@ public class Battle
         
         try
         {
-            // Cambiar el Pokémon activo
             string valor = this.TurnoActual.elegirAtaque(opcionAtaque, this.TurnoPasado.Activo, gestorEfectos);
             this.gestorEfectos.ProcesarEfectosDaño();
             this.CambiarTurno();

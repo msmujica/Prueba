@@ -102,12 +102,12 @@ public class Pokemon
         {
             if (VARIABLE == ataque)
             {
-                int valor = Ataque.CalcularDaño(ataque, oponente, gestorEfectos);
+                var (valor, mensaje) = Ataque.CalcularDaño(ataque, oponente, gestorEfectos);
                 oponente.recibirDaño(valor);
-                return valor.ToString();
+                return $"El oponente recibió {valor} de daño con el ataque {ataque}. {mensaje}"; // Devolvemos el mensaje
             }
         }
 
-        return "Flaco este no es tu ataque";
+        return "Este no es tu ataque";
     }
 }
