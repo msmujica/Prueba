@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using Library;
-using Library.Items;
 
 namespace Ucu.Poo.DiscordBot.Domain;
 
@@ -56,10 +53,10 @@ public class Battle
     /// <param name="player2">El segundo jugador (oponente).</param>
     public Battle(Entrenador player1, Entrenador player2)
     {
-        this.Player1 = player1;
-        this.Player2 = player2;
-        this.TurnoActual = player1;
-        this.TurnoPasado = player2;
+        Player1 = player1;
+        Player2 = player2;
+        TurnoActual = player1;
+        TurnoPasado = player2;
         gestorEfectos = new GestorEfectos();
         player1.SeteodeItems();
         player2.SeteodeItems();
@@ -72,12 +69,12 @@ public class Battle
 
     public bool validacionPokemon()
     {
-        if (this.Player1.Equipo.Count < 6)
+        if (Player1.Equipo.Count < 6)
         {
             return true;
         }
 
-        if (this.Player2.Equipo.Count < 6)
+        if (Player2.Equipo.Count < 6)
         {
             return true;
         }
@@ -93,7 +90,7 @@ public class Battle
     public bool ValidacionWin()
     {
         int count = 0;
-        foreach (var poke in this.TurnoPasado.Equipo)
+        foreach (var poke in TurnoPasado.Equipo)
         {
             if (poke.Vida <= 0)
             {
@@ -153,18 +150,17 @@ public class Battle
             return "No tenes los pokemones suficientes para empezar la batalla";
         }
 
-        if (this.gestorEfectos.ProcesarControlMasa(this.TurnoActual.Activo))
+        if (gestorEfectos.ProcesarControlMasa(TurnoActual.Activo))
         {
-            this.CambiarTurno();
+            CambiarTurno();
             return "No se puede";
         }
         
         try
         {
-            // Cambiar el Pokémon activo
-            string valor = this.TurnoActual.elegirAtaque(opcionAtaque, this.TurnoPasado.Activo, gestorEfectos);
-            this.gestorEfectos.ProcesarEfectosDaño();
-            this.CambiarTurno();
+            string valor = TurnoActual.elegirAtaque(opcionAtaque, TurnoPasado.Activo, gestorEfectos);
+            gestorEfectos.ProcesarEfectosDaño();
+            CambiarTurno();
             return valor;
         }
         catch (FormatException)
@@ -202,15 +198,15 @@ public class Battle
         try
         {
             // Verificar si el índice del Pokémon está en el rango
-            if (opcionPokemon < 0 || opcionPokemon >= this.TurnoActual.Equipo.Count)
+            if (opcionPokemon < 0 || opcionPokemon >= TurnoActual.Equipo.Count)
             {
                 return "Selección de Pokémon inválida. Por favor, intenta de nuevo.";
             }
 
             // Cambiar el Pokémon activo
-            string valor = this.TurnoActual.cambiarActivo(opcionPokemon);
-            this.gestorEfectos.ProcesarEfectosDaño();
-            this.CambiarTurno();
+            string valor = TurnoActual.cambiarActivo(opcionPokemon);
+            gestorEfectos.ProcesarEfectosDaño();
+            CambiarTurno();
             return valor;
         }
         catch (FormatException)
@@ -250,18 +246,18 @@ public class Battle
         try
         {
             // Verificar si el índice del Pokémon está en el rango
-            if (opcionPokemon < 0 || opcionPokemon >= this.TurnoActual.Equipo.Count)
+            if (opcionPokemon < 0 || opcionPokemon >= TurnoActual.Equipo.Count)
             {
                 return "Selección de Pokémon inválida.";
             }
 
-            Pokemon pokemonSeleccionado = this.TurnoActual.Equipo[opcionPokemon];
+            Pokemon pokemonSeleccionado = TurnoActual.Equipo[opcionPokemon];
 
             // Aplicar el ítem seleccionado al Pokémon
             
-            this.gestorEfectos.ProcesarEfectosDaño();
-            this.CambiarTurno();
-            return this.TurnoActual.UsarItem(opcionItem, pokemonSeleccionado, gestorEfectos);
+            gestorEfectos.ProcesarEfectosDaño();
+            CambiarTurno();
+            return TurnoActual.UsarItem(opcionItem, pokemonSeleccionado, gestorEfectos);
 
         }
         catch (FormatException)
@@ -282,10 +278,10 @@ public class Battle
     public void CambiarTurno()
     {
         // Cambiar al otro jugador
-        this.TurnoActual = (this.TurnoActual == Player1) ? Player2 : Player1;
-        this.TurnoPasado = (this.TurnoPasado == Player2) ? Player1 : Player2;
+        TurnoActual = (TurnoActual == Player1) ? Player2 : Player1;
+        TurnoPasado = (TurnoPasado == Player2) ? Player1 : Player2;
 
-        Console.WriteLine($"Es el turno de {this.TurnoActual.Nombre}");
+        Console.WriteLine($"Es el turno de {TurnoActual.Nombre}");
     }
 
     /// <summary>
@@ -294,7 +290,7 @@ public class Battle
     /// <returns>Lista de los Pokémon del oponente.</returns>
     public List<Pokemon> MostrarPokemonEnemigo()
     {
-        return this.turnoPasado.Equipo;
+        return turnoPasado.Equipo;
     } 
 
     /// <summary>
@@ -303,8 +299,8 @@ public class Battle
     /// <returns>Mensaje indicando que el jugador actual ha ganado.</returns>
     public string Win()
     {
-        this.TurnoActual = null;
-        this.turnoPasado = null;
-        return $"El jugador {this.TurnoActual} a ganado";
+        TurnoActual = null;
+        turnoPasado = null;
+        return $"El jugador {TurnoActual} a ganado";
     }
 }

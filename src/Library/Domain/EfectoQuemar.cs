@@ -1,5 +1,3 @@
-using System;
-
 namespace Library
 {
     /// <summary>
@@ -9,7 +7,7 @@ namespace Library
     public class EfectoQuemar : IEfecto
     {
         // Porcentaje de la vida máxima que pierde el Pokémon debido a la quemadura (10%)
-        private static double porcentajeDaño = 0.10; 
+        private static double dmgPercentage = 0.10; 
 
         /// <summary>
         /// Inicia el efecto de "quemar" en el Pokémon.
@@ -18,7 +16,7 @@ namespace Library
         /// <param name="pokemon">El Pokémon que será quemado.</param>
         public void IniciarEfecto(Pokemon pokemon)
         {
-            Console.WriteLine($"{pokemon.Nombre} ha sido quemado.");
+            Console.WriteLine($"{pokemon.Name} ha sido quemado.");
         }
 
         /// <summary>
@@ -33,7 +31,7 @@ namespace Library
         public bool ProcesarEfecto(Pokemon pokemon)
         {
             // Calcula el daño de la quemadura (10% de la vida máxima)
-            int daño = (int)(pokemon.Vida * porcentajeDaño);
+            int daño = (int)(pokemon.Vida * dmgPercentage);
             pokemon.Vida -= daño;
             
             if (pokemon.Vida <= 0)
