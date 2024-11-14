@@ -11,16 +11,16 @@ namespace Library;
 
 public class Pokemon
 {
-    private string nombre;
+    private string name;
     private int vida;
     private List<string> ataques;
     private string tipo;
     private bool estaDerrotado;
 
-    public string Nombre
+    public string Name
     {
-        get { return nombre; }
-        set { nombre = value; }
+        get { return name; }
+        set { name = value; }
     }
 
     public int Vida
@@ -54,9 +54,9 @@ public class Pokemon
     /// <param name="vida">Puntos de vida iniciales del Pokémon.</param>
     /// <param name="ataques">Lista de ataques que puede realizar el Pokémon.</param>
     /// <param name="tipo">Tipo o tipos del Pokémon.</param>
-    public Pokemon(string nombre, int vida, List<string> ataques, string tipo)
+    public Pokemon(string name, int vida, List<string> ataques, string tipo)
     {
-        Nombre = nombre;
+        Name = name;
         Vida = vida;
         Ataques = ataques;
         Tipos = tipo;
@@ -76,12 +76,12 @@ public class Pokemon
             {
                 EstaDerrotado = true;
                 Vida = 0;
-                Console.WriteLine($"{Nombre} a sido derrotado");
+                Console.WriteLine($"{Name} a sido derrotado");
             }
         }
         else
         {
-            Console.WriteLine($"{Nombre} no puede recibir daño por que ya a sido derrotado");
+            Console.WriteLine($"{Name} no puede recibir daño por que ya a sido derrotado");
         }
     }
 

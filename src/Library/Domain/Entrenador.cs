@@ -81,7 +81,7 @@ public class Entrenador
         Console.WriteLine("Lista de Pokemones en tu Pokedex");
         foreach (var lista in Equipo)
         {
-            Console.WriteLine($"{numero} - {lista.Nombre}");
+            Console.WriteLine($"{numero} - {lista.Name}");
             numero += 1;
         }
     }
@@ -97,7 +97,7 @@ public class Entrenador
         if (indexPokemonList >= 0 && indexPokemonList < Equipo.Count)
         {
             Activo = Equipo[indexPokemonList];
-            return Activo.Nombre;
+            return Activo.Name;
         }
 
         return ("Indice no valido. No se pudo cambiar el pokemon");

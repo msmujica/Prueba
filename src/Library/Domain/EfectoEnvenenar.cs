@@ -16,7 +16,7 @@ namespace Library
         /// <param name="pokemon">El Pokémon que será envenenado.</param>
         public void IniciarEfecto(Pokemon pokemon)
         {
-            Console.WriteLine($"{pokemon.Nombre} ha sido envenenado.");
+            Console.WriteLine($"{pokemon.Name} ha sido envenenado.");
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Library
             // Si la vida del Pokémon llega a cero o menos, el efecto ha terminado
             if (pokemon.Vida <= 0)
             { 
-                Console.WriteLine($"{pokemon.Nombre} ha caído por envenenamiento.");
+                Console.WriteLine($"{pokemon.Name} ha caído por envenenamiento.");
                 return false; // El efecto ha terminado (el Pokémon ha sido derrotado)
             }
             
