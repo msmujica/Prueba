@@ -1,5 +1,3 @@
-using System;
-
 namespace Library
 {
     /// <summary>
@@ -35,12 +33,10 @@ namespace Library
                 Console.WriteLine($"{pokemon.Nombre} supera la parálisis en este turno.");
                 return false; // El efecto continúa, ya que el Pokémon puede atacar.
             }
-            else
-            {
-                // El Pokémon no puede atacar este turno debido a la parálisis.
-                Console.WriteLine($"{pokemon.Nombre} está paralizado y no puede atacar este turno.");
-                return true; // El efecto sigue activo, ya que el Pokémon no puede atacar.
-            }
+
+            // El Pokémon no puede atacar este turno debido a la parálisis.
+            Console.WriteLine($"{pokemon.Nombre} está paralizado y no puede atacar este turno.");
+            return true; // El efecto sigue activo, ya que el Pokémon no puede atacar.
         }
 
         /// <summary>

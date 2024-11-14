@@ -1,5 +1,3 @@
-using System;
-
 namespace Library.Items
 {
     /// <summary>
@@ -31,15 +29,11 @@ namespace Library.Items
                     contadorSuperPocion--;
                     return ("Usaste una Super Pocion. Usos restantes: " + contadorSuperPocion);
                 }
-                else
-                {
-                    return ("El Pokémon ya está a máxima vida.");
-                }
+
+                return ("El Pokémon ya está a máxima vida.");
             }
-            else
-            {
-                return ("No tienes Super Pociones disponibles.");
-            }
+
+            return ("No tienes Super Pociones disponibles.");
         }
 
         /// <summary>
@@ -59,15 +53,11 @@ namespace Library.Items
                     contadorRevivir--;
                     return ("Usaste un Revivir. Usos restantes: " + contadorRevivir);
                 }
-                else
-                {
-                    return ("El Pokémon no está derrotado.");
-                }
+
+                return ("El Pokémon no está derrotado.");
             }
-            else
-            {
-                return ("No tienes Revivir disponible.");
-            }
+
+            return ("No tienes Revivir disponible.");
         }
 
         /// <summary>
@@ -86,10 +76,8 @@ namespace Library.Items
                 contadorCuraTotal--;
                 return ("Usaste una Cura Total. Usos restantes: " + contadorCuraTotal);
             }
-            else
-            {
-                return ("No tienes Curaciones Totales disponibles.");
-            }
+
+            return ("No tienes Curaciones Totales disponibles.");
         }
     }
 }

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
 namespace Library
 {
     /// <summary>
@@ -21,84 +17,83 @@ namespace Library
         /// Diccionario que almacena los ataques predefinidos con su respectivo daño y tipo.
         /// Cada clave es el nombre del ataque y el valor es una tupla que contiene el daño y el tipo del ataque.
         /// </summary>
-        private static readonly Dictionary<string, (int Damage, string Tipo)> attacks =
-            new Dictionary<string, (int Damage, string Type)>
-            {
-                // Agua
-                { "Pistola Agua", (40, "Agua") },
-                { "Hidrobomba", (110, "Agua") },
-                { "Burbuja", (20, "Agua") },
+        private static readonly Dictionary<string, (int Damage, string Tipo)> attacks = new Dictionary<string, (int Damage, string Type)>
+        {
+            // Agua
+            { "Pistola Agua", (40, "Agua") },
+            { "Hidrobomba", (110, "Agua") },
+            { "Burbuja", (20, "Agua") },
 
-                // Bicho
-                { "Picadura", (30, "Bicho") },
-                { "Pulso Bicho", (90, "Bicho") },
-                { "Tijera X", (80, "Bicho") },
+            // Bicho
+            { "Picadura", (30, "Bicho") },
+            { "Pulso Bicho", (90, "Bicho") },
+            { "Tijera X", (80, "Bicho") },
 
-                // Dragón
-                { "Garra Dragón", (80, "Dragón") },
-                { "Cometa Draco", (130, "Dragón") },
-                { "Aliento Dragón", (60, "Dragón") },
+            // Dragón
+            { "Garra Dragón", (80, "Dragón") },
+            { "Cometa Draco", (130, "Dragón") },
+            { "Aliento Dragón", (60, "Dragón") },
 
-                // Eléctrico
-                { "Impactrueno", (40, "Eléctrico") },
-                { "Rayo", (90, "Eléctrico") },
-                { "Trueno", (110, "Eléctrico") },
+            // Eléctrico
+            { "Impactrueno", (40, "Eléctrico") },
+            { "Rayo", (90, "Eléctrico") },
+            { "Trueno", (110, "Eléctrico") },
 
-                // Fantasma
-                { "Bola Sombra", (80, "Fantasma") },
-                { "Puño Spectral", (90, "Fantasma") },
-                { "Puño Sombrío", (70, "Fantasma") },
+            // Fantasma
+            { "Bola Sombra", (80, "Fantasma") },
+            { "Puño Spectral", (90, "Fantasma") },
+            { "Puño Sombrío", (70, "Fantasma") },
 
-                // Fuego
-                { "Llamarada", (110, "Fuego") },
-                { "Lanzallamas", (90, "Fuego") },
-                { "Ascuas", (40, "Fuego") },
+            // Fuego
+            { "Llamarada", (110, "Fuego") },
+            { "Lanzallamas", (90, "Fuego") },
+            { "Ascuas", (40, "Fuego") },
 
-                // Hielo
-                { "Rayo Hielo", (90, "Hielo") },
-                { "Ventisca", (110, "Hielo") },
-                { "Nieve Polvo", (40, "Hielo") },
+            // Hielo
+            { "Rayo Hielo", (90, "Hielo") },
+            { "Ventisca", (110, "Hielo") },
+            { "Nieve Polvo", (40, "Hielo") },
 
-                // Lucha
-                { "Golpe Karate", (50, "Lucha") },
-                { "A Bocajarro", (120, "Lucha") },
-                { "Puño Dinámico", (100, "Lucha") },
+            // Lucha
+            { "Golpe Karate", (50, "Lucha") },
+            { "A Bocajarro", (120, "Lucha") },
+            { "Puño Dinámico", (100, "Lucha") },
 
-                // Normal
-                { "Tackle", (40, "Normal") },
-                { "Puño Sombra", (70, "Normal") },
-                { "Desenlace", (50, "Normal") },
+            // Normal
+            { "Tackle", (40, "Normal") },
+            { "Puño Sombra", (70, "Normal") },
+            { "Desenlace", (50, "Normal") },
 
-                // Planta
-                { "Hoja Afilada", (55, "Planta") },
-                { "Látigo Cepa", (45, "Planta") },
-                { "Rayo Solar", (120, "Planta") },
+            // Planta
+            { "Hoja Afilada", (55, "Planta") },
+            { "Látigo Cepa", (45, "Planta") },
+            { "Rayo Solar", (120, "Planta") },
 
-                // Psíquico
-                { "Confusión", (50, "Psíquico") },
-                { "Psíquico", (90, "Psíquico") },
-                { "Premonición", (120, "Psíquico") },
+            // Psíquico
+            { "Confusión", (50, "Psíquico") },
+            { "Psíquico", (90, "Psíquico") },
+            { "Premonición", (120, "Psíquico") },
 
-                // Roca
-                { "Avalancha", (75, "Roca") },
-                { "Lanzarrocas", (50, "Roca") },
-                { "Roca Afilada", (100, "Roca") },
+            // Roca
+            { "Avalancha", (75, "Roca") },
+            { "Lanzarrocas", (50, "Roca") },
+            { "Roca Afilada", (100, "Roca") },
 
-                // Tierra
-                { "Terremoto", (100, "Tierra") },
-                { "Excavar", (80, "Tierra") },
-                { "Bofetón Lodo", (20, "Tierra") },
+            // Tierra
+            { "Terremoto", (100, "Tierra") },
+            { "Excavar", (80, "Tierra") },
+            { "Bofetón Lodo", (20, "Tierra") },
 
-                // Veneno
-                { "Ácido", (40, "Veneno") },
-                { "Bomba Lodo", (90, "Veneno") },
-                { "Cola Veneno", (50, "Veneno") },
+            // Veneno
+            { "Ácido", (40, "Veneno") },
+            { "Bomba Lodo", (90, "Veneno") },
+            { "Cola Veneno", (50, "Veneno") },
 
-                // Volador
-                { "Tornado", (40, "Volador") },
-                { "Ala de Acero", (70, "Volador") },
-                { "Ataque Aéreo", (75, "Volador") },
-            };
+            // Volador
+            { "Tornado", (40, "Volador") },
+            { "Ala de Acero", (70, "Volador") },
+            { "Ataque Aéreo", (75, "Volador") },
+        };
 
         /// <summary>
         /// Obtiene el daño y tipo de un ataque a partir de su nombre.
@@ -111,11 +106,9 @@ namespace Library
             {
                 return attacks[nameAttacks];
             }
-            else
-            {
-                Console.WriteLine("Ataque no encontrado.");
-                return (0, string.Empty); // Retorna un valor predeterminado si el ataque no existe
-            }
+
+            Console.WriteLine("Ataque no encontrado.");
+            return (0, string.Empty); // Retorna un valor predeterminado si el ataque no existe
         }
 
         /// <summary>
@@ -126,12 +119,12 @@ namespace Library
         /// <param name="objetivo">El Pokémon objetivo del ataque.</param>
         /// <param name="gestorEfectos">El objeto que gestiona los efectos especiales que pueden ocurrir.</param>
         /// <returns>El daño calculado para el ataque.</returns>
-        public static (int Daño, string Descripcion) CalcularDaño(string nombreAtaque, Pokemon objetivo,
-            GestorEfectos gestorEfectos)
+        public static (int Daño, string Descripcion) CalculeDamage(string nameAttack, Pokemon objetive,
+            GestorEfectos effectsManager)
         {
             string descripcion = "";
-            var ataque = ObtenerAtaque(nombreAtaque);
-            if (ataque.Daño == 0)
+            var attack = ObtainAttack(nameAttack);
+            if (attack.Damage == 0)
                 return (0, "Ataque no encontrado"); // Si el ataque no existe, retorna 0 y mensaje
 
             int totaldmg = attack.Damage;
@@ -139,59 +132,38 @@ namespace Library
             // Verifica si el ataque es preciso
             if (ItsPrecise())
             {
+                descripcion += "El ataque es preciso. ";
                 if (Critical())
                 {
+
                     totaldmg = (int)(totaldmg * 1.2); // Aumenta el daño en un 20% si es crítico
-
-                    descripcion += "El ataque es preciso. ";
-
-                    if (EsCritico())
-                    {
-                        dañoTotal = (int)(dañoTotal * 1.2); // Aumenta el daño en un 20% si es crítico
-                        descripcion += "¡Es un golpe crítico! ";
-                    }
-
-                    // Calcula el multiplicador de daño según los tipos
-                    double multiplicador = LogicaTipos.CalcularMultiplicador(attack.Type, objetive.Tipos);
-                    totaldmg = (int)(totaldmg * multiplicador);
-
-                    if (effectsManager.PokemonConEfecto(objetive))
-                    {
-                        // Intenta aplicar un efecto especial con una probabilidad fija del 10%
-                        if (ApplySpecialEffect())
-                        {
-                            IEfecto efectoEspecial = SelectSpecialEffect();
-                            effectsManager.AplicarEfecto(efectoEspecial, objetive);
-                        }
-
-                        double multiplicador = LogicaTipos.CalcularMultiplicador(ataque.Tipo, objetivo.Tipos);
-                        dañoTotal = (int)(dañoTotal * multiplicador);
-                        descripcion += $"El daño después del multiplicador de tipo es {dañoTotal}. ";
-
-                        if (gestorEfectos.PokemonConEfecto(objetivo) && AplicaEfectoEspecial())
-                        {
-                            // Aplica un efecto especial
-                            IEfecto efectoEspecial = SeleccionarEfectoEspecial();
-                            gestorEfectos.AplicarEfecto(efectoEspecial, objetivo);
-                            descripcion += $"Se aplica el efecto especial: {efectoEspecial}. ";
-                        }
-                    }
-                    else
-                    {
-                        totaldmg = 0; // Si no es preciso, no causa daño
-                    }
-
-                    return totaldmg;
-                    dañoTotal = 0; // Si no es preciso, no causa daño
-                    descripcion = "El ataque falló.";
+                    descripcion += "¡Es un golpe crítico! ";
                 }
 
-                return (dañoTotal, descripcion);
-            }
-    
+                // Calcula el multiplicador de daño según los tipos
+                double multiplier = LogicaTipos.CalcularMultiplicador(attack.Type, objetive.Tipos);
+                totaldmg = (int)(totaldmg * multiplier);
+                descripcion += $"Como el ataque es tipo {attack.Type} el daño es {totaldmg}. ";
 
-    /// <summary>
-        /// Determina si el ataque es preciso (con una probabilidad del 70%).
+                if (effectsManager.PokemonConEfecto(objetive) && ApplySpecialEffect())
+                {
+                    // Aplica un efecto especial
+                    IEfecto efectoEspecial = SelectSpecialEffect();
+                    effectsManager.AplicarEfecto(efectoEspecial, objetive);
+                    descripcion += $"Se aplica el efecto especial: {efectoEspecial}. ";
+                }
+            }
+            else
+            {
+                totaldmg = 0; // Si no es preciso, no causa daño
+                descripcion = "El ataque falló.";
+            }
+
+            return (totaldmg, descripcion);
+        }
+
+        /// <summary>
+            /// /// /// Determina si el ataque es preciso (con una probabilidad del 70%).
         /// </summary>
         /// <returns>Verdadero si el ataque es preciso, falso si no lo es.</returns>
         public static bool ItsPrecise()

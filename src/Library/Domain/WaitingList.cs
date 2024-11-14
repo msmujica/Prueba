@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Library;
 
@@ -14,12 +12,12 @@ public class WaitingList
 
     public int Count
     {
-        get { return this.trainers.Count; }
+        get { return trainers.Count; }
     }
 
     public ReadOnlyCollection<Entrenador> GetAllWaiting()
     {
-        return this.trainers.AsReadOnly();
+        return trainers.AsReadOnly();
     }
     
     /// <summary>
@@ -37,7 +35,7 @@ public class WaitingList
             throw new ArgumentException(nameof(displayName));
         }
         
-        if (this.FindTrainerByDisplayName(displayName) != null) return false;
+        if (FindTrainerByDisplayName(displayName) != null) return false;
         trainers.Add(new Entrenador(displayName));
         return true;
 
@@ -53,7 +51,7 @@ public class WaitingList
     /// contrario.</returns>
     public bool RemoveTrainer(string displayName)
     {
-        Entrenador? trainer = this.FindTrainerByDisplayName(displayName);
+        Entrenador? trainer = FindTrainerByDisplayName(displayName);
         if (trainer == null) return false;
         trainers.Remove(trainer);
         return true;
@@ -71,7 +69,7 @@ public class WaitingList
     /// </returns>
     public Entrenador? FindTrainerByDisplayName(string displayName)
     {
-        foreach (Entrenador trainer in this.trainers)
+        foreach (Entrenador trainer in trainers)
         {
             if (trainer.Nombre == displayName)
             {
@@ -91,11 +89,11 @@ public class WaitingList
     /// <returns></returns>
     public Entrenador? GetAnyoneWaiting()
     {
-        if (this.trainers.Count == 0)
+        if (trainers.Count == 0)
         {
             return null;
         }
 
-        return this.trainers[0];
+        return trainers[0];
     }
 }

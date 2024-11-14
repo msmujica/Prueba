@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Windows.Markup;
-
 namespace Library;
 
 /// <summary>
@@ -60,11 +56,11 @@ public class Pokemon
     /// <param name="tipo">Tipo o tipos del Pokémon.</param>
     public Pokemon(string nombre, int vida, List<string> ataques, string tipo)
     {
-        this.Nombre = nombre;
-        this.Vida = vida;
-        this.Ataques = ataques;
-        this.Tipos = tipo;
-        this.EstaDerrotado = false;
+        Nombre = nombre;
+        Vida = vida;
+        Ataques = ataques;
+        Tipos = tipo;
+        EstaDerrotado = false;
     }
 
     /// <summary>
@@ -73,19 +69,19 @@ public class Pokemon
     /// <param name="daño">Cantidad de daño recibido.</param>
     public void recibirDaño(int daño)
     {
-        if (!this.EstaDerrotado)
+        if (!EstaDerrotado)
         {
-            this.Vida -= daño;
-            if (this.Vida <= 0)
+            Vida -= daño;
+            if (Vida <= 0)
             {
-                this.EstaDerrotado = true;
-                this.Vida = 0;
-                Console.WriteLine($"{this.Nombre} a sido derrotado");
+                EstaDerrotado = true;
+                Vida = 0;
+                Console.WriteLine($"{Nombre} a sido derrotado");
             }
         }
         else
         {
-            Console.WriteLine($"{this.Nombre} no puede recibir daño por que ya a sido derrotado");
+            Console.WriteLine($"{Nombre} no puede recibir daño por que ya a sido derrotado");
         }
     }
 
@@ -98,12 +94,11 @@ public class Pokemon
     /// <returns>El valor del daño causado al oponente como una cadena.</returns>
     public string atacar(Pokemon oponente, string ataque, GestorEfectos gestorEfectos)
     {
-        foreach (var VARIABLE in this.Ataques)
+        foreach (var VARIABLE in Ataques)
         {
             if (VARIABLE == ataque)
             {
-                int valor = Attack.CalculeDamage(ataque, oponente, gestorEfectos);
-                var (valor, mensaje) = Ataque.CalcularDaño(ataque, oponente, gestorEfectos);
+                var (valor, mensaje) = Attack.CalculeDamage(ataque, oponente, gestorEfectos);
                 oponente.recibirDaño(valor);
                 return $"El oponente recibió {valor} de daño con el ataque {ataque}. {mensaje}"; // Devolvemos el mensaje
             }

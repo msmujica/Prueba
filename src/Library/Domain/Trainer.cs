@@ -17,6 +17,6 @@ public class Trainer
     /// <param name="displayName">El nombre de usuario de Discord.</param>
     public Trainer(string displayName)
     {
-        this.DisplayName = displayName;
+        DisplayName = displayName;
     }
 }

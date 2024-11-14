@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using Ucu.Poo.DiscordBot.Domain;
-
 namespace Library
 {
     /// <summary>
@@ -21,7 +17,7 @@ namespace Library
         // Constructor que inicializa el diccionario de efectos
         public GestorEfectos()
         {
-            this.efectosActivos = new Dictionary<Pokemon, List<IEfecto>>();
+            efectosActivos = new Dictionary<Pokemon, List<IEfecto>>();
         }
 
         /// <summary>

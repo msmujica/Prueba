@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 using Library.Items;
 
 namespace Library;
@@ -52,9 +49,9 @@ public class Entrenador
     /// <param name="nombre">El nombre del entrenador.</param>
     public Entrenador(string nombre)
     {
-        this.Nombre = nombre;
-        this.Equipo = new List<Pokemon>();
-        this.Activo = null;
+        Nombre = nombre;
+        Equipo = new List<Pokemon>();
+        Activo = null;
         gestorDeItems = new GestorDeItems(); 
     }
     
@@ -66,13 +63,13 @@ public class Entrenador
 
     public string elegirEquipo(int numero)
     {
-        if (this.Equipo.Count >= 6)
+        if (Equipo.Count >= 6)
         {
             return "Ya tienes la cantidad maxima de Pokemones en tu Equipo";
         }
         Pokedex.CrearPokemonPorIndice(numero, this);
         nombre = Pokedex.MostrarPokemonPorIndice(numero);
-        return $"El pokemon {nombre} se agrego a la lista, quedan {this.Equipo.Count - 6} espacios.";
+        return $"El pokemon {nombre} se agrego a la lista, quedan {Equipo.Count - 6} espacios.";
     }
 
     /// <summary>
@@ -82,7 +79,7 @@ public class Entrenador
     {
         int numero = 0;
         Console.WriteLine("Lista de Pokemones en tu Pokedex");
-        foreach (var lista in this.Equipo)
+        foreach (var lista in Equipo)
         {
             Console.WriteLine($"{numero} - {lista.Nombre}");
             numero += 1;
@@ -97,15 +94,13 @@ public class Entrenador
 
     public string cambiarActivo(int indexPokemonList)
     {
-        if (indexPokemonList >= 0 && indexPokemonList < this.Equipo.Count)
+        if (indexPokemonList >= 0 && indexPokemonList < Equipo.Count)
         {
-            this.Activo = this.Equipo[indexPokemonList];
-            return this.Activo.Nombre;
+            Activo = Equipo[indexPokemonList];
+            return Activo.Nombre;
         }
-        else
-        {
-            return ("Indice no valido. No se pudo cambiar el pokemon");
-        }
+
+        return ("Indice no valido. No se pudo cambiar el pokemon");
     }
     
     /// <summary>
@@ -117,7 +112,7 @@ public class Entrenador
     /// <returns>El resultado de la acción de atacar.</returns>
     public string elegirAtaque(string nombre, Pokemon oponente, GestorEfectos gestorEfectos)
     {
-        return this.activo.atacar(oponente, nombre, gestorEfectos);
+        return activo.atacar(oponente, nombre, gestorEfectos);
     }
 
     /// <summary>
@@ -155,11 +150,11 @@ public class Entrenador
     public void CambioPokemonMuerto()
     {
         int count = 0;
-        foreach (var pok in this.Equipo)
+        foreach (var pok in Equipo)
         {
             if (!pok.EstaDerrotado && count == 0)
             {
-                this.Activo = pok;
+                Activo = pok;
                 count++;
                 
                 
@@ -173,8 +168,8 @@ public class Entrenador
     /// </summary>
     public void SeteodeItems()
     {
-        this.ContadorSuperPocion = 4;
-        this.ContadorCuraTotal = 2;
-        this.ContadorRevivir = 1;
+        ContadorSuperPocion = 4;
+        ContadorCuraTotal = 2;
+        ContadorRevivir = 1;
     }
 }

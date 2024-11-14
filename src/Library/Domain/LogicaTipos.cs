@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Library;
 
 /// <summary>
@@ -15,7 +13,7 @@ namespace Library;
 public static class LogicaTipos
 {
     // Diccionario de cada tipo de debilidades (tipos que son fuertes contra ese tipo).
-    private static readonly Dictionary<string, List<string>> Debilidades = new Dictionary<string, List<string>>()
+    private static readonly Dictionary<string, List<string>> Debilidades = new Dictionary<string, List<string>>
     {
         { "Agua", new List<string> { "Eléctrico", "Planta" } },
         { "Bicho", new List<string> { "Fuego", "Roca", "Volador", "Veneno" } },
@@ -35,7 +33,7 @@ public static class LogicaTipos
     };
 
     // Diccionario de cada tipo de sus resistencias (tipos que son débiles contra ese tipo).
-    private static readonly Dictionary<string, List<string>> Resistencias = new Dictionary<string, List<string>>()
+    private static readonly Dictionary<string, List<string>> Resistencias = new Dictionary<string, List<string>>
     {
         { "Agua", new List<string> { "Agua", "Fuego", "Hielo" } },
         { "Bicho", new List<string> { "Lucha", "Planta", "Tierra" } },
@@ -51,7 +49,7 @@ public static class LogicaTipos
     };
 
     // Diccionario de cada tipo de sus inmunidades (tipos contra los que no tienen ningún efecto).
-    private static readonly Dictionary<string, List<string>> Inmunidades = new Dictionary<string, List<string>>()
+    private static readonly Dictionary<string, List<string>> Inmunidades = new Dictionary<string, List<string>>
     {
         { "Eléctrico", new List<string> { "Eléctrico" } },
         { "Fantasma", new List<string> { "Normal" } },
