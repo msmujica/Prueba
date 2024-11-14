@@ -32,7 +32,7 @@ public class AttackTest
         var effectsmanager = new GestorEfectos();
 
         // Configura el daño base para un ataque como "Hoja Afilada" (55 daño)
-        int calculedamage = Attack.CalculeDamage("Hoja Afilada", targetpokemon, effectsmanager);
+        var (calculedamage, description) = Attack.CalculeDamage("Hoja Afilada", targetpokemon, effectsmanager);
 
         // Si el ataque es crítico, el daño debería multiplicarse por 1.2
         Assert.AreEqual(calculedamage, 55);

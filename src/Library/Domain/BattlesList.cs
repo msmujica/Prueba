@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Library;
 
 namespace Ucu.Poo.DiscordBot.Domain;
@@ -19,7 +18,7 @@ public class BattlesList
     public Battle AddBattle(Entrenador player1, Entrenador player2)
     {
         var battle = new Battle(player1, player2);
-        this.battles.Add(battle);
+        battles.Add(battle);
         return battle;
     }
     
@@ -30,7 +29,7 @@ public class BattlesList
     /// <returns>El entrenador encontrado o <c>null</c> si no se encuentra en ninguna batalla.</returns>
     public Entrenador? FindTrainerByDisplayName(string displayName)
     {
-        foreach (Battle batlle in this.battles)
+        foreach (Battle batlle in battles)
         {
             if (batlle.Player1.Nombre == displayName)
             {
@@ -53,7 +52,7 @@ public class BattlesList
     /// <returns>La batalla encontrada o <c>null</c> si no se encuentra ninguna batalla con ese jugador.</returns>
     public Battle? FindBattleByDisplayName(string displayName)
     {
-        foreach (Battle batlle in this.battles)
+        foreach (Battle batlle in battles)
         {
             if (batlle.Player1.Nombre == displayName)
             {
