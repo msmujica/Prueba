@@ -332,6 +332,14 @@ public class Facade
         return result;
     }
 
+    public string Surrender(string playerDisplayName)
+    {
+        Battle? battle = this.BattlesList.FindBattleByDisplayName(playerDisplayName);
+        this.BattlesList.removeBatlle(battle);
+        return $"{playerDisplayName} se a rendido. Termino la Batalla";
+        
+    }
+
     /// <summary>
     /// Valida si es el turno del jugador durante una batalla.
     /// </summary>
