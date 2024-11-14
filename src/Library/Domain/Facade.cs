@@ -57,12 +57,20 @@ public class Facade
     /// <returns>Un mensaje con el resultado.</returns>
     public string AddTrainerToWaitingList(string displayName)
     {
-        if (this.WaitingList.AddTrainer(displayName))
-        {
-            return $"{displayName} agregado a la lista de espera";
-        }
+        Entrenador? player = this.BattlesList.FindTrainerByDisplayName(displayName);
+        Battle? battle = this.BattlesList.FindBattleByDisplayName(displayName);
         
-        return $"{displayName} ya está en la lista de espera";
+        if (player.Nombre != battle.Player1.Nombre && player.Nombre != battle.Player2.Nombre)
+        {
+            if (this.WaitingList.AddTrainer(displayName))
+            {
+                return $"{displayName} agregado a la lista de espera";
+            }
+        
+            return $"{displayName} ya está en la lista de espera";   
+        }
+
+        return $"{displayName} ya esta en una batalla";
     }
 
     /// <summary>
