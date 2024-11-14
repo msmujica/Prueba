@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
 namespace Library
 {
     /// <summary>
@@ -110,11 +106,9 @@ namespace Library
             {
                 return attacks[nameAttacks];
             }
-            else
-            {
-                Console.WriteLine("Ataque no encontrado.");
-                return (0, string.Empty); // Retorna un valor predeterminado si el ataque no existe
-            }
+
+            Console.WriteLine("Ataque no encontrado.");
+            return (0, string.Empty); // Retorna un valor predeterminado si el ataque no existe
         }
 
         /// <summary>
@@ -125,16 +119,12 @@ namespace Library
         /// <param name="objetivo">El Pokémon objetivo del ataque.</param>
         /// <param name="gestorEfectos">El objeto que gestiona los efectos especiales que pueden ocurrir.</param>
         /// <returns>El daño calculado para el ataque.</returns>
-        public static int CalculeDamage(string nameAttack, Pokemon objetive, GestorEfectos effectsManager)
-        {
-            var attack = ObtainAttack(nameAttack);
-            if (attack.Damage == 0)
-                return 0; // Si el ataque no existe, no calculamos el daño.
-        static (int Daño, string Descripcion) CalcularDaño(string nombreAtaque, Pokemon objetivo, GestorEfectos gestorEfectos)
+        public static (int Daño, string Descripcion) CalculeDamage(string nameAttack, Pokemon objetive,
+            GestorEfectos effectsManager)
         {
             string descripcion = "";
-            var ataque = ObtenerAtaque(nombreAtaque);
-            if (ataque.Daño == 0)
+            var attack = ObtainAttack(nameAttack);
+            if (attack.Damage == 0)
                 return (0, "Ataque no encontrado"); // Si el ataque no existe, retorna 0 y mensaje
 
             int totaldmg = attack.Damage;
@@ -142,57 +132,38 @@ namespace Library
             // Verifica si el ataque es preciso
             if (ItsPrecise())
             {
+                descripcion += "El ataque es preciso. ";
                 if (Critical())
                 {
-                    totaldmg = (int)(totaldmg * 1.2); // Aumenta el daño en un 20% si es crítico
 
-                descripcion += "El ataque es preciso. ";
-        
-                if (EsCritico())
-                {
-                    dañoTotal = (int)(dañoTotal * 1.2); // Aumenta el daño en un 20% si es crítico
+                    totaldmg = (int)(totaldmg * 1.2); // Aumenta el daño en un 20% si es crítico
                     descripcion += "¡Es un golpe crítico! ";
                 }
 
                 // Calcula el multiplicador de daño según los tipos
-                double multiplicador = LogicaTipos.CalcularMultiplicador(attack.Type, objetive.Tipos);
-                totaldmg = (int)(totaldmg * multiplicador);
+                double multiplier = LogicaTipos.CalcularMultiplicador(attack.Type, objetive.Tipos);
+                totaldmg = (int)(totaldmg * multiplier);
+                descripcion += $"Como el ataque es tipo {attack.Type} el daño es {totaldmg}. ";
 
-                if (effectsManager.PokemonConEfecto(objetive))
-                {
-                    // Intenta aplicar un efecto especial con una probabilidad fija del 10%
-                    if (ApplySpecialEffect())
-                    {
-                        IEfecto efectoEspecial = SelectSpecialEffect();
-                        effectsManager.AplicarEfecto(efectoEspecial, objetive);
-                    }
-                double multiplicador = LogicaTipos.CalcularMultiplicador(ataque.Tipo, objetivo.Tipos);
-                dañoTotal = (int)(dañoTotal * multiplicador);
-                descripcion += $"El daño después del multiplicador de tipo es {dañoTotal}. ";
-
-                if (gestorEfectos.PokemonConEfecto(objetivo) && AplicaEfectoEspecial())
+                if (effectsManager.PokemonConEfecto(objetive) && ApplySpecialEffect())
                 {
                     // Aplica un efecto especial
-                    IEfecto efectoEspecial = SeleccionarEfectoEspecial();
-                    gestorEfectos.AplicarEfecto(efectoEspecial, objetivo);
+                    IEfecto efectoEspecial = SelectSpecialEffect();
+                    effectsManager.AplicarEfecto(efectoEspecial, objetive);
                     descripcion += $"Se aplica el efecto especial: {efectoEspecial}. ";
                 }
             }
             else
             {
                 totaldmg = 0; // Si no es preciso, no causa daño
-            }
-
-            return totaldmg;
-                dañoTotal = 0; // Si no es preciso, no causa daño
                 descripcion = "El ataque falló.";
             }
 
-            return (dañoTotal, descripcion);
+            return (totaldmg, descripcion);
         }
 
         /// <summary>
-        /// Determina si el ataque es preciso (con una probabilidad del 70%).
+            /// /// /// Determina si el ataque es preciso (con una probabilidad del 70%).
         /// </summary>
         /// <returns>Verdadero si el ataque es preciso, falso si no lo es.</returns>
         public static bool ItsPrecise()
