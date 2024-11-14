@@ -45,6 +45,11 @@ public class BattlesList
 
         return null;
     }
+
+    public void removeBatlle(Battle batt)
+    {
+        this.battles.Remove(batt);
+    }
     
     /// <summary>
     /// Busca una batalla en la lista por el nombre de pantalla de uno de los jugadores.
