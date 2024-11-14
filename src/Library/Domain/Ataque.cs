@@ -15,13 +15,13 @@ namespace Library
     /// •	Acoplamiento Bajo: Aunque la clase interactúa con otras clases, como GestorEfectos y Pokemon, se encarga de delegar funcionalidades específicas, como la aplicación de efectos especiales, sin acoplarse demasiado a ellas, lo que permite cambios en otras clases sin afectar a Ataque.
 
     /// </summary>
-    public static class Ataque
+    public static class Attack
     {
         /// <summary>
         /// Diccionario que almacena los ataques predefinidos con su respectivo daño y tipo.
         /// Cada clave es el nombre del ataque y el valor es una tupla que contiene el daño y el tipo del ataque.
         /// </summary>
-        private static readonly Dictionary<string, (int Daño, string Tipo)> ataques = new Dictionary<string, (int Daño, string Tipo)>
+        private static readonly Dictionary<string, (int Damage, string Tipo)> attacks = new Dictionary<string, (int Damage, string Type)>
         {
             // Agua
             { "Pistola Agua", (40, "Agua") },
@@ -102,13 +102,13 @@ namespace Library
         /// <summary>
         /// Obtiene el daño y tipo de un ataque a partir de su nombre.
         /// </summary>
-        /// <param name="nombreAtaque">Nombre del ataque que se quiere obtener.</param>
+        /// <param name="nameAttack">Nombre del ataque que se quiere obtener.</param>
         /// <returns>Una tupla con el daño y el tipo del ataque.</returns>
-        public static (int Daño, string Tipo) ObtenerAtaque(string nombreAtaque)
+        public static (int Damage, string Type) ObtainAttack(string nameAttacks)
         {
-            if (ataques.ContainsKey(nombreAtaque))
+            if (attacks.ContainsKey(nameAttacks))
             {
-                return ataques[nombreAtaque];
+                return attacks[nameAttacks];
             }
             else
             {
@@ -125,6 +125,11 @@ namespace Library
         /// <param name="objetivo">El Pokémon objetivo del ataque.</param>
         /// <param name="gestorEfectos">El objeto que gestiona los efectos especiales que pueden ocurrir.</param>
         /// <returns>El daño calculado para el ataque.</returns>
+        public static int CalculeDamage(string nameAttack, Pokemon objetive, GestorEfectos effectsManager)
+        {
+            var attack = ObtainAttack(nameAttack);
+            if (attack.Damage == 0)
+                return 0; // Si el ataque no existe, no calculamos el daño.
         public static (int Daño, string Descripcion) CalcularDaño(string nombreAtaque, Pokemon objetivo, GestorEfectos gestorEfectos)
         {
             string descripcion = "";
@@ -132,11 +137,15 @@ namespace Library
             if (ataque.Daño == 0)
                 return (0, "Ataque no encontrado"); // Si el ataque no existe, retorna 0 y mensaje
 
-            int dañoTotal = ataque.Daño;
+            int totaldmg = attack.Damage;
 
             // Verifica si el ataque es preciso
-            if (EsPreciso())
+            if (ItsPrecise())
             {
+                if (Critical())
+                {
+                    totaldmg = (int)(totaldmg * 1.2); // Aumenta el daño en un 20% si es crítico
+
                 descripcion += "El ataque es preciso. ";
         
                 if (EsCritico())
@@ -146,6 +155,17 @@ namespace Library
                 }
 
                 // Calcula el multiplicador de daño según los tipos
+                double multiplicador = LogicaTipos.CalcularMultiplicador(attack.Type, objetive.Tipos);
+                totaldmg = (int)(totaldmg * multiplicador);
+
+                if (effectsManager.PokemonConEfecto(objetive))
+                {
+                    // Intenta aplicar un efecto especial con una probabilidad fija del 10%
+                    if (ApplySpecialEffect())
+                    {
+                        IEfecto efectoEspecial = SelectSpecialEffect();
+                        effectsManager.AplicarEfecto(efectoEspecial, objetive);
+                    }
                 double multiplicador = LogicaTipos.CalcularMultiplicador(ataque.Tipo, objetivo.Tipos);
                 dañoTotal = (int)(dañoTotal * multiplicador);
                 descripcion += $"El daño después del multiplicador de tipo es {dañoTotal}. ";
@@ -160,6 +180,10 @@ namespace Library
             }
             else
             {
+                totaldmg = 0; // Si no es preciso, no causa daño
+            }
+
+            return totaldmg;
                 dañoTotal = 0; // Si no es preciso, no causa daño
                 descripcion = "El ataque falló.";
             }
@@ -171,7 +195,7 @@ namespace Library
         /// Determina si el ataque es preciso (con una probabilidad del 70%).
         /// </summary>
         /// <returns>Verdadero si el ataque es preciso, falso si no lo es.</returns>
-        public static bool EsPreciso()
+        public static bool ItsPrecise()
         {
             return new Random().NextDouble() <= 0.7; // Probabilidad fija de 70% para precisión
         }
@@ -180,7 +204,7 @@ namespace Library
         /// Determina si el ataque es un golpe crítico (con una probabilidad del 20%).
         /// </summary>
         /// <returns>Verdadero si el ataque es crítico, falso si no lo es.</returns>
-        public static bool EsCritico()
+        public static bool Critical()
         {
             return new Random().NextDouble() <= 0.2; // 20% de probabilidad de crítico
         }
@@ -189,7 +213,7 @@ namespace Library
         /// Determina si se debe aplicar un efecto especial con una probabilidad del 10%.
         /// </summary>
         /// <returns>Verdadero si se aplica un efecto especial, falso si no se aplica.</returns>
-        public static bool AplicaEfectoEspecial()
+        public static bool ApplySpecialEffect()
         {
             return new Random().NextDouble() <= 0.1; // Probabilidad fija del 10%
         }
@@ -198,11 +222,11 @@ namespace Library
         /// Selecciona un efecto especial aleatorio para aplicar (dormir, paralizar, envenenar, quemar).
         /// </summary>
         /// <returns>El efecto especial seleccionado.</returns>
-        public static IEfecto SeleccionarEfectoEspecial()
+        public static IEfecto SelectSpecialEffect()
         {
-            int efecto = new Random().Next(1, 5);
+            int effect = new Random().Next(1, 5);
 
-            switch (efecto)
+            switch (effect)
             {
                 case 1:
                     return new EfectoDormir();
