@@ -130,6 +130,12 @@ namespace Library
             var attack = ObtainAttack(nameAttack);
             if (attack.Damage == 0)
                 return 0; // Si el ataque no existe, no calculamos el daño.
+        public static (int Daño, string Descripcion) CalcularDaño(string nombreAtaque, Pokemon objetivo, GestorEfectos gestorEfectos)
+        {
+            string descripcion = "";
+            var ataque = ObtenerAtaque(nombreAtaque);
+            if (ataque.Daño == 0)
+                return (0, "Ataque no encontrado"); // Si el ataque no existe, retorna 0 y mensaje
 
             int totaldmg = attack.Damage;
 
@@ -139,8 +145,15 @@ namespace Library
                 if (Critical())
                 {
                     totaldmg = (int)(totaldmg * 1.2); // Aumenta el daño en un 20% si es crítico
+
+                descripcion += "El ataque es preciso. ";
+        
+                if (EsCritico())
+                {
+                    dañoTotal = (int)(dañoTotal * 1.2); // Aumenta el daño en un 20% si es crítico
+                    descripcion += "¡Es un golpe crítico! ";
                 }
-                
+
                 // Calcula el multiplicador de daño según los tipos
                 double multiplicador = LogicaTipos.CalcularMultiplicador(attack.Type, objetive.Tipos);
                 totaldmg = (int)(totaldmg * multiplicador);
@@ -153,6 +166,16 @@ namespace Library
                         IEfecto efectoEspecial = SelectSpecialEffect();
                         effectsManager.AplicarEfecto(efectoEspecial, objetive);
                     }
+                double multiplicador = LogicaTipos.CalcularMultiplicador(ataque.Tipo, objetivo.Tipos);
+                dañoTotal = (int)(dañoTotal * multiplicador);
+                descripcion += $"El daño después del multiplicador de tipo es {dañoTotal}. ";
+
+                if (gestorEfectos.PokemonConEfecto(objetivo) && AplicaEfectoEspecial())
+                {
+                    // Aplica un efecto especial
+                    IEfecto efectoEspecial = SeleccionarEfectoEspecial();
+                    gestorEfectos.AplicarEfecto(efectoEspecial, objetivo);
+                    descripcion += $"Se aplica el efecto especial: {efectoEspecial}. ";
                 }
             }
             else
@@ -161,6 +184,11 @@ namespace Library
             }
 
             return totaldmg;
+                dañoTotal = 0; // Si no es preciso, no causa daño
+                descripcion = "El ataque falló.";
+            }
+
+            return (dañoTotal, descripcion);
         }
 
         /// <summary>

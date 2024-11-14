@@ -16,7 +16,7 @@ public class ChangePokemonCommand : ModuleBase<SocketCommandContext>
     /// Implementa el comando 'change'. Este comando une al jugador que envía el
     /// id del pokemon para cambiarlo.
     /// </summary>
-    [Command("choose")]
+    [Command("change")]
     [Summary(
         """
         Un jugador que elije un id de pokemon para cambiar su activo;
@@ -32,8 +32,8 @@ public class ChangePokemonCommand : ModuleBase<SocketCommandContext>
         if (pokemonInt != null)
         {
             string result = Facade.Instance.ChangePokemon(displayName, pokemonInt);
-            await Context.Message.Author.SendMessageAsync(result);
+            ReplyAsync(result);
         }
-        await Context.Message.Author.SendMessageAsync("Favor de proporcionar un ID valido.");
+        ReplyAsync("Favor de proporcionar un ID valido.");
     }
 }

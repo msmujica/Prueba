@@ -8,12 +8,12 @@ namespace Ucu.Poo.DiscordBot.Commands;
 /// Este comando retorna la lista de Pokémon disponibles.
 /// </summary>
 // ReSharper disable once UnusedType.Global
-public class ShowEnemiesPokemon : ModuleBase<SocketCommandContext>
+public class ShowEnemiesPokemonCommand : ModuleBase<SocketCommandContext>
 {
     /// <summary>
     /// Implementa el comando 'showpokemon', que muestra los Pokémon disponibles.
     /// </summary>
-    [Command("showpokemonsenemie")]
+    [Command("showPokemons")]
     [Summary("Devuelve una lista de todos los Pokémon del enemigo disponibles.")]
     // ReSharper disable once UnusedMember.Global
     public async Task ExecuteAsync([Remainder][Summary("El nombre del entrenador del cual se desea ver el equipo de Pokémon.")]

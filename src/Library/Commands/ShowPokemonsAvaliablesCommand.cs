@@ -13,7 +13,7 @@ public class ShowPokemonCommand : ModuleBase<SocketCommandContext>
     /// <summary>
     /// Implementa el comando 'showpokemon', que muestra los Pokémon disponibles.
     /// </summary>
-    [Command("showpokemons")]
+    [Command("pokemonsAvaliables")]
     [Summary("Devuelve una lista de todos los Pokémon disponibles.")]
     // ReSharper disable once UnusedMember.Global
     public async Task ExecuteAsync()

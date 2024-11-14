@@ -1,3 +1,4 @@
+using System.Collections;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
@@ -16,7 +17,7 @@ public class ChooseItemCommand : ModuleBase<SocketCommandContext>
     /// Implementa el comando 'item'. Este commando selecciona
     /// un item y un pokemon, luego lo usa.
     /// </summary>
-    [Command("battle")]
+    [Command("item")]
     [Summary(
         """
         Ordena al pokemon activo de el Entrenador a atacar; si el 
@@ -26,16 +27,15 @@ public class ChooseItemCommand : ModuleBase<SocketCommandContext>
     public async Task ExecuteAsync(
         [Remainder]
         [Summary("Opcion de ataque")]
-        int pokemonOption)
+        string? optionList = null)
     {
         string displayName = CommandHelper.GetDisplayName(Context);
-        string itemOption = null;
+        string[] options = optionList.Split(",");
 
         string result;
-        if (itemOption == null && pokemonOption >= 0 && pokemonOption <= 5)
+        if (options == null)
         {
-            result = Facade.Instance.UseItem(displayName, pokemonOption, itemOption);
-            await Context.Message.Author.SendMessageAsync(result);
+            result = Facade.Instance.UseItem(displayName, Int32.Parse(options[1]), options[0]);
         }
         else
         {
