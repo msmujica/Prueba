@@ -102,7 +102,7 @@ public class Pokemon
         {
             if (VARIABLE == ataque)
             {
-                int valor = Ataque.CalcularDaño(ataque, oponente, gestorEfectos);
+                int valor = Attack.CalculeDamage(ataque, oponente, gestorEfectos);
                 oponente.recibirDaño(valor);
                 return valor.ToString();
             }

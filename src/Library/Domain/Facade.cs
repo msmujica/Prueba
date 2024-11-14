@@ -321,7 +321,7 @@ public class Facade
 
         foreach (var ataque in activo.Ataques)
         {
-            var (dañoAtaque, tipoAtaque) = Ataque.ObtenerAtaque(ataque);
+            var (dañoAtaque, tipoAtaque) = Attack.ObtainAttack(ataque);
 
             result += $"{ataque}: Tipo = {tipoAtaque}, Daño = {dañoAtaque}\n";
         }
