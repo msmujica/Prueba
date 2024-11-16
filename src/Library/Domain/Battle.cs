@@ -150,10 +150,12 @@ public class Battle
             return "No tenes los pokemones suficientes para empezar la batalla";
         }
 
-        if (gestorEfectos.ProcesarControlMasa(TurnoActual.Activo))
+        string description = "";
+
+        if (gestorEfectos.ProcesarControlMasa(TurnoActual.Activo, out description))
         {
             CambiarTurno();
-            return "No se puede";
+            return description;
         }
         
         try
