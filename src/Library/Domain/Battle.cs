@@ -142,7 +142,7 @@ public class Battle
         
         if (ValidacionWin())
         {
-            Win();
+            Facade.Instance.Win(this.turnoActual.Nombre);
         }
         
         if (validacionPokemon())
@@ -183,11 +183,14 @@ public class Battle
     /// <returns>Mensaje que describe el resultado del cambio de Pokémon.</returns>
     public string IntermediarioCambiarPokemonActivo(int opcionPokemon)
     {
-        validacionPokemon();
+        if (ValidacionPokemonVivo())
+        {
+            return "Se a cambiado tu pokemon por que murio. Vuelve a realziar el ataque";
+        }
         
         if (ValidacionWin())
         {
-            Win();
+            Facade.Instance.Win(this.turnoActual.Nombre);
         }
         
         if (validacionPokemon())
@@ -231,11 +234,14 @@ public class Battle
     /// <returns>Mensaje que describe el resultado del uso del ítem.</returns>
     public string IntermediarioUsarItem(int opcionPokemon, string opcionItem)
     {
-        validacionPokemon();
+        if (ValidacionPokemonVivo())
+        {
+            return "Se a cambiado tu pokemon por que murio. Vuelve a realziar el ataque";
+        }
         
         if (ValidacionWin())
         {
-            Win();
+            Facade.Instance.Win(this.turnoActual.Nombre);
         }
         
         if (validacionPokemon())
@@ -292,15 +298,4 @@ public class Battle
     {
         return turnoPasado.Equipo;
     } 
-
-    /// <summary>
-    /// Muestra el mensaje de victoria cuando el jugador actual gana la batalla.
-    /// </summary>
-    /// <returns>Mensaje indicando que el jugador actual ha ganado.</returns>
-    public string Win()
-    {
-        TurnoActual = null;
-        turnoPasado = null;
-        return $"El jugador {TurnoActual} a ganado";
-    }
 }
