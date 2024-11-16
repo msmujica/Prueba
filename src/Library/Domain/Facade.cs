@@ -60,7 +60,7 @@ public class Facade
         Entrenador? player = this.BattlesList.FindTrainerByDisplayName(displayName);
         Battle? battle = this.BattlesList.FindBattleByDisplayName(displayName);
         
-        if (player.Nombre != battle.Player1.Nombre && player.Nombre != battle.Player2.Nombre)
+        if (battle == null)
         {
             if (this.WaitingList.AddTrainer(displayName))
             {
