@@ -334,14 +334,6 @@ public class Facade
         return result;
     }
 
-    public string Surrender(string playerDisplayName)
-    {
-        Battle? battle = this.BattlesList.FindBattleByDisplayName(playerDisplayName);
-        this.BattlesList.removeBatlle(battle);
-        return $"{playerDisplayName} se a rendido. Termino la Batalla";
-        
-    }
-
     /// <summary>
     /// Valida si es el turno del jugador durante una batalla.
     /// </summary>
@@ -357,5 +349,21 @@ public class Facade
         }
 
         return false;
+    }
+    
+    public string Surrender(string playerDisplayName)
+    {
+        Battle? battle = this.BattlesList.FindBattleByDisplayName(playerDisplayName);
+        this.BattlesList.removeBatlle(battle);
+        return $"{playerDisplayName} se a rendido. Termino la Batalla";
+        
+    }
+    
+    public string Win(string playerDisplayName)
+    {
+        Battle? battle = this.BattlesList.FindBattleByDisplayName(playerDisplayName);
+        this.BattlesList.removeBatlle(battle);
+        return $"{playerDisplayName} a ganado la batalla";
+        
     }
 }
