@@ -63,13 +63,13 @@ public class Entrenador
 
     public string elegirEquipo(int numero)
     {
-        if (Equipo.Count >= 6)
+        if (this.Equipo.Count >= 6)
         {
-            return "Ya tienes la cantidad maxima de Pokemones en tu Equipo";
+            return "Ya tienes la cantidad maxima de Pokemones en tu Equipo.";
         }
         Pokedex.CrearPokemonPorIndice(numero, this);
-        nombre = Pokedex.MostrarPokemonPorIndice(numero);
-        return $"El pokemon {nombre} se agrego a la lista, quedan {6 - Equipo.Count} espacios.";
+        string nombre = Pokedex.MostrarPokemonPorIndice(numero);
+        return $"El pokemon {nombre} se agrego a la lista, quedan {6 - this.Equipo.Count} espacios.";
     }
 
     /// <summary>

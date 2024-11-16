@@ -251,7 +251,9 @@ public class Facade
     public string ChooseTeam(string playerDisplayName, int number)
     {
         Entrenador? player = BattlesList.FindTrainerByDisplayName(playerDisplayName);
-        return player.elegirEquipo(number);
+        string hola = player.elegirEquipo(number);
+        Console.WriteLine(hola);
+        return hola;
     }
 
     /// <summary>
