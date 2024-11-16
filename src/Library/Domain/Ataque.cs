@@ -17,83 +17,84 @@ namespace Library
         /// Diccionario que almacena los ataques predefinidos con su respectivo daño y tipo.
         /// Cada clave es el nombre del ataque y el valor es una tupla que contiene el daño y el tipo del ataque.
         /// </summary>
-        private static readonly Dictionary<string, (int Damage, string Tipo)> attacks = new Dictionary<string, (int Damage, string Type)>
-        {
-            // Agua
-            { "Pistola Agua", (40, "Agua") },
-            { "Hidrobomba", (110, "Agua") },
-            { "Burbuja", (20, "Agua") },
+        private static readonly Dictionary<string, (int Damage, string Tipo)> attacks =
+            new Dictionary<string, (int Damage, string Type)>
+            {
+                // Agua
+                { "Pistola Agua", (40, "Agua") },
+                { "Hidrobomba", (110, "Agua") },
+                { "Burbuja", (20, "Agua") },
 
-            // Bicho
-            { "Picadura", (30, "Bicho") },
-            { "Pulso Bicho", (90, "Bicho") },
-            { "Tijera X", (80, "Bicho") },
+                // Bicho
+                { "Picadura", (30, "Bicho") },
+                { "Pulso Bicho", (90, "Bicho") },
+                { "Tijera X", (80, "Bicho") },
 
-            // Dragón
-            { "Garra Dragón", (80, "Dragón") },
-            { "Cometa Draco", (130, "Dragón") },
-            { "Aliento Dragón", (60, "Dragón") },
+                // Dragón
+                { "Garra Dragón", (80, "Dragón") },
+                { "Cometa Draco", (130, "Dragón") },
+                { "Aliento Dragón", (60, "Dragón") },
 
-            // Eléctrico
-            { "Impactrueno", (40, "Eléctrico") },
-            { "Rayo", (90, "Eléctrico") },
-            { "Trueno", (110, "Eléctrico") },
+                // Eléctrico
+                { "Impactrueno", (40, "Eléctrico") },
+                { "Rayo", (90, "Eléctrico") },
+                { "Trueno", (110, "Eléctrico") },
 
-            // Fantasma
-            { "Bola Sombra", (80, "Fantasma") },
-            { "Puño Spectral", (90, "Fantasma") },
-            { "Puño Sombrío", (70, "Fantasma") },
+                // Fantasma
+                { "Bola Sombra", (80, "Fantasma") },
+                { "Puño Spectral", (90, "Fantasma") },
+                { "Puño Sombrío", (70, "Fantasma") },
 
-            // Fuego
-            { "Llamarada", (110, "Fuego") },
-            { "Lanzallamas", (90, "Fuego") },
-            { "Ascuas", (40, "Fuego") },
+                // Fuego
+                { "Llamarada", (110, "Fuego") },
+                { "Lanzallamas", (90, "Fuego") },
+                { "Ascuas", (40, "Fuego") },
 
-            // Hielo
-            { "Rayo Hielo", (90, "Hielo") },
-            { "Ventisca", (110, "Hielo") },
-            { "Nieve Polvo", (40, "Hielo") },
+                // Hielo
+                { "Rayo Hielo", (90, "Hielo") },
+                { "Ventisca", (110, "Hielo") },
+                { "Nieve Polvo", (40, "Hielo") },
 
-            // Lucha
-            { "Golpe Karate", (50, "Lucha") },
-            { "A Bocajarro", (120, "Lucha") },
-            { "Puño Dinámico", (100, "Lucha") },
+                // Lucha
+                { "Golpe Karate", (50, "Lucha") },
+                { "A Bocajarro", (120, "Lucha") },
+                { "Puño Dinámico", (100, "Lucha") },
 
-            // Normal
-            { "Tackle", (40, "Normal") },
-            { "Puño Sombra", (70, "Normal") },
-            { "Desenlace", (50, "Normal") },
+                // Normal
+                { "Tackle", (40, "Normal") },
+                { "Puño Sombra", (70, "Normal") },
+                { "Desenlace", (50, "Normal") },
 
-            // Planta
-            { "Hoja Afilada", (55, "Planta") },
-            { "Látigo Cepa", (45, "Planta") },
-            { "Rayo Solar", (120, "Planta") },
+                // Planta
+                { "Hoja Afilada", (55, "Planta") },
+                { "Látigo Cepa", (45, "Planta") },
+                { "Rayo Solar", (120, "Planta") },
 
-            // Psíquico
-            { "Confusión", (50, "Psíquico") },
-            { "Psíquico", (90, "Psíquico") },
-            { "Premonición", (120, "Psíquico") },
+                // Psíquico
+                { "Confusión", (50, "Psíquico") },
+                { "Psíquico", (90, "Psíquico") },
+                { "Premonición", (120, "Psíquico") },
 
-            // Roca
-            { "Avalancha", (75, "Roca") },
-            { "Lanzarrocas", (50, "Roca") },
-            { "Roca Afilada", (100, "Roca") },
+                // Roca
+                { "Avalancha", (75, "Roca") },
+                { "Lanzarrocas", (50, "Roca") },
+                { "Roca Afilada", (100, "Roca") },
 
-            // Tierra
-            { "Terremoto", (100, "Tierra") },
-            { "Excavar", (80, "Tierra") },
-            { "Bofetón Lodo", (20, "Tierra") },
+                // Tierra
+                { "Terremoto", (100, "Tierra") },
+                { "Excavar", (80, "Tierra") },
+                { "Bofetón Lodo", (20, "Tierra") },
 
-            // Veneno
-            { "Ácido", (40, "Veneno") },
-            { "Bomba Lodo", (90, "Veneno") },
-            { "Cola Veneno", (50, "Veneno") },
+                // Veneno
+                { "Ácido", (40, "Veneno") },
+                { "Bomba Lodo", (90, "Veneno") },
+                { "Cola Veneno", (50, "Veneno") },
 
-            // Volador
-            { "Tornado", (40, "Volador") },
-            { "Ala de Acero", (70, "Volador") },
-            { "Ataque Aéreo", (75, "Volador") },
-        };
+                // Volador
+                { "Tornado", (40, "Volador") },
+                { "Ala de Acero", (70, "Volador") },
+                { "Ataque Aéreo", (75, "Volador") },
+            };
 
         /// <summary>
         /// Obtiene el daño y tipo de un ataque a partir de su nombre.
@@ -145,12 +146,16 @@ namespace Library
                 totaldmg = (int)(totaldmg * multiplier);
                 description += $"Como el ataque es tipo {attack.Type} el daño es {totaldmg}. ";
 
-                if (effectsManager.PokemonConEfecto(objetive) && ApplySpecialEffect())
+                if (!effectsManager.PokemonConEfecto(objetive) && ApplySpecialEffect())
                 {
                     // Aplica un efecto especial
-                    IEfecto efectoEspecial = SelectSpecialEffect();
-                    effectsManager.AplicarEfecto(efectoEspecial, objetive);
-                    description += $"Se aplica el efecto especial: {efectoEspecial}. ";
+                    var (EffectSpecial, descriptioneffect) = SelectSpecialEffect();
+                    effectsManager.AplicarEfecto(EffectSpecial, objetive);
+                    description += $"Se aplica el efecto especial: {descriptioneffect}. ";
+                    if (EffectSpecial is EfectoDormir efectodormir)
+                    {
+                        description += $"por {efectodormir.turnosDormidos}";
+                    }
                 }
             }
             else
@@ -163,7 +168,7 @@ namespace Library
         }
 
         /// <summary>
-            /// /// /// Determina si el ataque es preciso (con una probabilidad del 70%).
+        /// /// /// Determina si el ataque es preciso (con una probabilidad del 70%).
         /// </summary>
         /// <returns>Verdadero si el ataque es preciso, falso si no lo es.</returns>
         public static bool ItsPrecise()
@@ -191,25 +196,25 @@ namespace Library
 
         /// <summary>
         /// Selecciona un efecto especial aleatorio para aplicar (dormir, paralizar, envenenar, quemar).
-        /// </summary>
+        /// </summary>int 
         /// <returns>El efecto especial seleccionado.</returns>
-        public static IEfecto SelectSpecialEffect()
+        public static (IEfecto efecto, string descripcion) SelectSpecialEffect()
         {
             int effect = new Random().Next(1, 5);
-
             switch (effect)
             {
                 case 1:
-                    return new EfectoDormir();
+                    return (new EfectoDormir(), "Dormir el cual produce un estado de sueño en el objetivo");
                 case 2:
-                    return new EfectoParalizar();
+                    return (new EfectoParalizar(), "Paralizar el cual tiene cierta probabilidad de invalidar el ataque.");
                 case 3:
-                    return new EfectoEnvenenar();
+                    return (new EfectoEnvenenar(), "Envenenar el cual cuasa daño progresivo.");
                 case 4:
-                    return new EfectoQuemar();
+                    return (new EfectoQuemar(), "Quemar el cual causa daño continuo.");
+                default:
+                    return (null, "No se aplica ningún efecto especial."); // Valor por defecto
             }
-
-            return null; // Si no se selecciona ningún efecto, retorna null
         }
+
     }
 }
