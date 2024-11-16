@@ -54,12 +54,14 @@ namespace Library
         /// <c>true</c> si el efecto sigue activo (por ejemplo, sigue dormido o paralizado).
         /// <c>false</c> si el efecto ha terminado o no aplica.
         /// </returns>
-        public bool ProcesarControlMasa(Pokemon pokem)
+        public bool ProcesarControlMasa(Pokemon pokem, out string descripcion)
         {
+            // Inicializamos la descripción vacía
+            descripcion = "";
+
             // Verifica si el Pokémon tiene efectos activos
             if (!efectosActivos.ContainsKey(pokem))
             {
-                Console.WriteLine($"{pokem.Name} no tiene efectos activos.");
                 return false;
             }
 
@@ -67,14 +69,21 @@ namespace Library
             foreach (var v in efectos)
             {
                 // Procesa efectos como dormir o paralizar
-                if (v is EfectoDormir || v is EfectoParalizar)
+                if (v is EfectoDormir)
                 {
+                    descripcion = $"{pokem.Name} está dormido. Turnos restantes: {(v as EfectoDormir).turnosDormidos}";
+                    return v.ProcesarEfecto(pokem); // Devuelve si el efecto sigue activo
+                }
+                else if (v is EfectoParalizar)
+                {
+                    descripcion = (v as EfectoParalizar).description;
                     return v.ProcesarEfecto(pokem); // Devuelve si el efecto sigue activo
                 }
             }
 
             return false; // Si no es un efecto de control como dormir o paralizar, retorna false
         }
+
 
         /// <summary>
         /// Procesa efectos de daño continuo (como veneno o quemadura) que afectan a la vida del Pokémon.
@@ -104,18 +113,17 @@ namespace Library
         /// Limpia todos los efectos activos de un Pokémon.
         /// </summary>
         /// <param name="pokemon">El Pokémon cuyo efecto se eliminará.</param>
-        public void LimpiarEfectos(Pokemon pokemon)
+        public string LimpiarEfectos(Pokemon pokemon)
         {
             // Elimina los efectos activos del Pokémon si existen
             if (efectosActivos.ContainsKey(pokemon))
             {
                 efectosActivos.Remove(pokemon);
-                Console.WriteLine($"Todos los efectos han sido eliminados de {pokemon.Name}.");
+                return ($"Todos los efectos han sido eliminados de {pokemon.Name}.");
             }
-            else
-            {
-                Console.WriteLine($"{pokemon.Name} no tiene efectos activos.");
-            }
+            
+            return ($"{pokemon.Name} no tiene efectos activos.");
+            
         }
 
         /// <summary>

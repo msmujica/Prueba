@@ -6,6 +6,7 @@ namespace Library
     /// </summary>
     public class EfectoParalizar : IEfecto
     {
+        public string description = "";
         /// <summary>
         /// Inicia el efecto de "paralizar" en el Pokémon.
         /// Este efecto impide que el Pokémon pueda atacar con una probabilidad.
@@ -30,12 +31,12 @@ namespace Library
             if (PuedeAtacar())
             {
                 // El Pokémon puede atacar este turno.
-                Console.WriteLine($"{pokemon.Name} supera la parálisis en este turno.");
+                this.description = ($"{pokemon.Name} supera la parálisis en este turno.");
                 return false; // El efecto continúa, ya que el Pokémon puede atacar.
             }
 
             // El Pokémon no puede atacar este turno debido a la parálisis.
-            Console.WriteLine($"{pokemon.Name} está paralizado y no puede atacar este turno.");
+            this.description = ($"{pokemon.Name} está paralizado y no puede atacar este turno.");
             return true; // El efecto sigue activo, ya que el Pokémon no puede atacar.
         }
 

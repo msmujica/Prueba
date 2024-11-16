@@ -72,9 +72,8 @@ namespace Library.Items
             if (contadorCuraTotal > 0)
             {
                 pokemon.Vida = 100; // Cura completamente al Pokémon
-                gestorEfectos.LimpiarEfectos(pokemon);
                 contadorCuraTotal--;
-                return ("Usaste una Cura Total. Usos restantes: " + contadorCuraTotal);
+                return ($"Usaste una Cura Total. Usos restantes: {contadorCuraTotal}. {gestorEfectos.LimpiarEfectos(pokemon)} ");
             }
 
             return ("No tienes Curaciones Totales disponibles.");
